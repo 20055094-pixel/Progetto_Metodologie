@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍳 CookBook - Piattaforma Ricette</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1>🍳 CookBook</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#" data-route="home">Home</a>
+            <a href="#" data-route="recipes">Ricette</a>
+            <div id="auth-links">
+                <a href="#" data-route="login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app">
+        <div class="loading">⏳ Caricamento...</div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CookBook - Piattaforma Ricette Online</p>
+    </footer>
+
+    <!-- Template: Home -->
+    <template id="home-template">
+        <div class="hero-section">
+            <h2>🍳 Benvenuto su CookBook</h2>
+            <p>Scopri e condividi le migliori ricette</p>
+        </div>
+        
+        <div class="featured-recipes">
+            <h3>Ricette in Evidenza</h3>
+            <div id="featured-recipes-grid" class="recipes-grid"></div>
+        </div>
+    </template>
+
+    <!-- Template: Pagina Ricette -->
+    <template id="recipes-template">
+        <div class="recipes-page">
+            <aside class="filters-sidebar">
+                <h3>🔍 Filtri</h3>
+                <div class="filter-group">
+                    <label>Ricerca</label>
+                    <input type="text" id="search-filter" placeholder="Cerca ricetta...">
+                </div>
+                <div class="filter-group">
+                    <label>Categoria</label>
+                    <select id="category-filter">
+                        <option value="">Tutte</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Difficoltà</label>
+                    <select id="difficulty-filter">
+                        <option value="">Tutte</option>
+                        <option value="facile">Facile</option>
+                        <option value="medio">Medio</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Tempo max (min)</label>
+                    <input type="number" id="prep-time-filter" placeholder="es. 30">
+                </div>
+                <div class="filter-actions">
+                    <button id="apply-filters" class="btn-primary">Applica filtri</button>
+                    <button id="clear-filters" class="btn-secondary">Cancella</button>
+                </div>
+                
+            </aside>
+            
+            <div>
+                <div class="content-header">
+                    <h2>📖 Tutte le Ricette</h2>
+                    <div id="authenticated-actions" style="display: none;">
+                        <button id="add-recipe-btn" class="btn-primary">➕ Nuova Ricetta</button>
+                    </div>
+                </div>
+                <div id="recipes-grid" class="recipes-grid"></div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template: Dettaglio Ricetta -->
+    <template id="recipe-detail-template">
+        <div class="recipe-detail">
+            <div class="recipe-header">
+                <h1 id="recipe-title"></h1>
+                <p id="recipe-description"></p>
+                <div class="recipe-meta">
+                    <span id="recipe-chef"></span>
+                    <span id="recipe-category"></span>
+                    <span id="recipe-difficulty"></span>
+                </div>
+            </div>
+            
+            <div class="recipe-content">
+                <div class="recipe-info">
+                    <div class="recipe-image">
+                        <img id="recipe-image" alt="Ricetta">
+                    </div>
+                    
+                    <div class="recipe-times">
+                        <div class="time-info">
+                            <span class="label">Preparazione</span>
+                            <strong id="prep-time"></strong> min
+                        </div>
+                        <div class="time-info">
+                            <span class="label">Cottura</span>
+                            <strong id="cook-time"></strong> min
+                        </div>
+                        <div class="time-info">
+                            <span class="label">Porzioni</span>
+                            <strong id="servings"></strong>
+                        </div>
+                    </div>
+                    
+                    <div class="ingredients-section">
+                        <h3>📋 Ingredienti</h3>
+                        <div id="ingredients-list" class="ingredients-sortable"></div>
+                    </div>
+                    
+                    <div class="recipe-actions">
+                        <button id="favorite-btn" class="btn-primary" style="display: none;">❤️ Aggiungi ai Preferiti</button>
+                        <div id="recipe-owner-actions" style="display: none;">
+                            <button id="edit-recipe-btn" class="btn-warning">✏️ Modifica</button>
+                            <button id="delete-recipe-btn" class="btn-danger">🗑️ Elimina</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="instructions-section">
+                        <h3>👨‍🍳 Istruzioni</h3>
+                        <div id="instructions"></div>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <h3>⭐ Recensioni</h3>
+                        <div id="add-review" style="display: none;">
+                            <form id="review-form">
+                                <div class="rating-input">
+                                    <label>La tua valutazione</label>
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                    </div>
+                                </div>
+                                <textarea id="review-comment" placeholder="Scrivi un commento..."></textarea>
+                                <button type="submit" class="btn-primary">📝 Invia Recensione</button>
+                            </form>
+                        </div>
+                        <div id="reviews-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template: Form Ricetta -->
+    <template id="recipe-form-template">
+        <div class="recipe-form-container">
+            <h2 id="form-title">Nuova Ricetta</h2>
+            <form id="recipe-form" class="recipe-form">
+                <div class="form-group">
+                    <label>Titolo *</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Descrizione</label>
+                    <textarea name="description" id="description" rows="3"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoria *</label>
+                        <select name="category" id="category" required>
+                            <option value="">Seleziona categoria</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Difficoltà</label>
+                        <select name="difficulty" id="difficulty">
+                            <option value="facile">Facile</option>
+                            <option value="medio">Medio</option>
+                            <option value="difficile">Difficile</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tempo Preparazione (min)</label>
+                        <input type="number" name="prep-time" id="prep-time" value="30">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tempo Cottura (min)</label>
+                        <input type="number" name="cook-time" id="cook-time" value="30">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Porzioni</label>
+                        <input type="number" name="servings" id="servings" value="4">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Immagine</label>
+                    <input type="file" id="recipe-image" accept="image/*">
+                    <div id="image-preview" style="display: none; margin-top: 1rem;">
+                        <img id="preview-img" style="max-width: 200px; border-radius: 8px;">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Istruzioni *</label>
+                    <textarea name="instructions" id="instructions" rows="8" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Ingredienti</label>
+                    <div id="ingredients-container"></div>
+                    <button type="button" id="add-ingredient" class="btn-secondary">➕ Aggiungi Ingrediente</button>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">💾 Salva Ricetta</button>
+                    <button type="button" id="cancel-form" class="btn-secondary">❌ Annulla</button>
+                </div>
+            </form>
+        </div>
+    </template>
+
+    <!-- Login Template -->
+    <template id="login-template">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Accedi a CookBook</h2>
+                
+                <!-- Login con credenziali semplici -->
+                <div class="login-method">
+                    <h3>Login</h3>
+                    <form id="simple-login-form">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Accedi</button>
+                    </form>
+                </div>
+
+                <!-- Separatore -->
+                <div class="login-separator">
+                    <span>oppure</span>
+                </div>
+
+                <!-- Login con Google -->
+                <div class="login-method">
+                    <h3>Login con Google</h3>
+                    <a href="/auth/google" class="google-login-btn">
+                        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        <span>Accedi con Google</span>
+                    </a>
+                </div>
+
+                <!-- Link per mostrare registrazione -->
+                <div class="auth-switch">
+                    <p>Non hai un account? <button type="button" id="show-register" class="link-button">Registrati qui</button></p>
+                </div>
+            </div>
+
+            <!-- Box di registrazione (inizialmente nascosto) -->
+            <div class="register-box" id="register-box" style="display: none;">
+                <h2>Registrati su CookBook</h2>
+                
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Nome completo:</label>
+                        <input type="text" id="register-name" required placeholder="Es. Mario Rossi">
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="register-email" required placeholder="mario@esempio.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input type="password" id="register-password" required minlength="6" placeholder="Minimo 6 caratteri">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo di account:</label>
+                        <select id="register-role" required>
+                            <option value="">Seleziona il tuo ruolo</option>
+                            <option value="user">Cliente (Visualizza e salva ricette)</option>
+                            <option value="chef">Chef (Può creare ricette)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Crea Account</button>
+                </form>
+
+                <!-- Link per tornare al login -->
+                <div class="auth-switch">
+                    <p>Hai già un account? <button type="button" id="show-login" class="link-button">Accedi qui</button></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template: Dashboard -->
+    <template id="dashboard-template">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h2>Ciao, <span id="user-name"></span>!</h2>
+                <p id="user-role" class="user-role-badge"></p>
+            </div>
+            
+            <div class="dashboard-sections">
+                <div class="dashboard-card">
+                    <h3>Le Mie Ricette</h3>
+                    <div id="my-recipes-count" class="stat-number">0 ricette</div>
+                    <div id="chef-actions" style="display: none;">
+                        <a href="#add-recipe" data-route="add-recipe" class="btn-primary">➕ Nuova Ricetta</a>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Preferiti</h3>
+                    <div id="favorites-count" class="stat-number">0 ricette</div>
+                    <button id="view-favorites" class="btn-primary">👀 Visualizza</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Le Mie Recensioni</h3>
+                    <div id="reviews-count" class="stat-number">0 recensioni</div>
+                    <button id="view-my-reviews" class="btn-primary">👀 Visualizza</button>
+                </div>
+
+                <div class="dashboard-card" id="admin-reviews-card" style="display: none;">
+                    <h3>Tutte le Recensioni (Admin)</h3>
+                    <div id="all-reviews-count" class="stat-number">0 recensioni</div>
+                    <button id="view-all-reviews" class="btn-warning">🔧 Modera</button>
+                </div>
+            </div>
+
+            <div class="dashboard-capabilities">
+                <h3>Le Tue Capacità</h3>
+                <div id="capabilities-list" class="capabilities-grid"></div>
+            </div>
+            
+            <div id="favorites-list" style="display: none; margin-top: 2rem;">
+                <h3>I Tuoi Preferiti</h3>
+                <div id="favorites-grid" class="recipes-grid"></div>
+            </div>
+
+            <div id="my-reviews-list" style="display: none; margin-top: 2rem;">
+                <h3>Le Tue Recensioni</h3>
+                <div id="my-reviews-container" class="multi-column-2"></div>
+            </div>
+
+            <div id="all-reviews-list" style="display: none; margin-top: 2rem;">
+                <h3>Tutte le Recensioni (Moderazione Admin)</h3>
+                <div id="all-reviews-container" class="multi-column-2"></div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/app.js"></script>
+</body>
+</html>

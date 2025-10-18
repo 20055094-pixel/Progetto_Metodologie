@@ -1,0 +1,1332 @@
+/* Variabili CSS per colori e spaziature */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --primary-color: #667eea;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --success-color: #28a745;
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 20px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.2);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: `Segoe UI`, Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* ========================================
+   SISTEMA MULTI-COLUMN LAYOUT AVANZATO
+   ======================================== */
+
+/* Layout a 2 colonne */
+.multi-column-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Layout a 3 colonne */
+.multi-column-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Layout a 4 colonne */
+.multi-column-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Layout auto-fit responsive (default) */
+.multi-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Layout auto-fill per cards più piccole */
+.multi-column-compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* Layout masonry-style con column-count */
+.multi-column-masonry {
+    column-count: 3;
+    column-gap: 2rem;
+    padding: 1rem;
+}
+
+.multi-column-masonry > * {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+}
+
+/* Layout con sidebar (2/3 - 1/3) */
+.layout-with-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Layout con sidebar invertita */
+.layout-with-sidebar-left {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* ========================================
+   HEADER E NAVIGATION
+   ======================================== */
+.navbar {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* ========================================
+   LAYOUT PRINCIPALE
+   ======================================== */
+main {
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+}
+
+/* Hero section */
+.hero-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+}
+
+.hero-section h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========================================
+   GRIGLIA RICETTE - MULTI-COLUMN RESPONSIVE
+   ======================================== */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    align-items: start;
+}
+
+/* Grid alternativa per lista compatta */
+.recipes-grid.compact {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+/* Grid per visualizzazione wide */
+.recipes-grid.wide {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2.5rem;
+}
+
+.recipe-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    cursor: pointer;
+    height: 105%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f3f4f6;
+    display: block;
+}
+
+.recipe-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card h3 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.recipe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: auto;
+}
+
+.recipe-meta span {
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.recipe-meta span:first-child {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+}
+
+.recipe-meta span:nth-child(2) {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffc107;
+}
+
+.recipe-meta span:nth-child(3) {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-color: #17a2b8;
+}
+
+/* ========================================
+   PAGINA RICETTE CON LAYOUT SIDEBAR
+   ======================================== */
+.recipes-page {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.filters-sidebar {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    height: fit-content;
+    position: sticky;
+    top: 6rem;
+}
+
+.filters-sidebar h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+.filter-group {
+    margin-bottom: 1rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Miglioramenti filtri sidebar */
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.filter-actions button {
+    width: 100%;
+}
+
+.filter-info {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: #f0f7ff;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+}
+
+.filter-info small {
+    color: #555;
+    line-height: 1.4;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+}
+
+/* ========================================
+   DETTAGLIO RICETTA - LAYOUT A COLONNE
+   ======================================== */
+.recipe-detail {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.recipe-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.recipe-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-content {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(400px, 2fr);
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.recipe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.recipe-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.recipe-times {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.time-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.time-info .label {
+    display: block;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* Ingredienti con drag & drop */
+.ingredients-sortable {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.ingredient-item {
+    background: white;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    cursor: move;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredient-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.ingredient-item.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+/* Bottoni */
+.btn-primary, .btn-secondary, .btn-warning, .btn-danger {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-primary:hover, .btn-secondary:hover, 
+.btn-warning:hover, .btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ========================================
+   FORM - LAYOUT RESPONSIVE
+   ======================================== */
+.recipe-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Ingredienti nel form */
+.ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    align-items: end;
+}
+
+/* Recensioni */
+.reviews-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+}
+
+.stars {
+    display: flex;
+    gap: 0.2rem;
+    margin: 0.5rem 0;
+}
+
+.star {
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star.active,
+.star:hover {
+    color: #ffc107;
+}
+
+.review-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Login page */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.login-box, .register-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: white;
+    color: #3c4043;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: `Google Sans`, `Roboto`, Arial, sans-serif;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.google-login-btn:hover {
+    background: #f8f9fa;
+    border-color: #d2d4d8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.google-login-btn:active {
+    background: #e8eaed;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+/* Separator per login con Google */
+.login-separator {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+
+
+.login-separator span {
+    background: white;
+    padding: 0 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* ========================================
+   DASHBOARD - LAYOUT MULTI-COLUMN
+   ======================================== */
+.dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.dashboard-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.dashboard h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Miglioramenti per il multi-column layout */
+.featured-recipes {
+    margin-top: 2rem;
+}
+
+.featured-recipes h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Stili per il content header */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.content-header h2 {
+    color: #333;
+    margin: 0;
+}
+
+/* Miglioramenti responsive per dashboard */
+@media (max-width: 768px) {
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Animazioni aggiuntive per drag & drop */
+.ingredient-item.drag-over {
+    border-left-color: #28a745;
+    background-color: #f8f9fa;
+}
+
+/* Stili per placeholder immagini */
+.recipe-card img[src*="placeholder"],
+.recipe-card img[src*="data:image/svg"],
+.recipe-image img[src*="placeholder"],
+.recipe-image img[src*="data:image/svg"] {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .multi-column {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipes-page {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .filters-sidebar {
+        position: relative;
+        top: auto;
+        margin-bottom: 1rem;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Animazioni per elementi eliminabili */
+.removable {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.removable:hover::after {
+    content: `✖`;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.removing {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Stili aggiuntivi per elementi mancanti */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #666;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.login-benefits {
+    list-style: none;
+    text-align: left;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.login-benefits li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.google-icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.recipe-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.dashboard-sections {
+    margin: 2rem 0;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.dashboard-card h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.dashboard-card > div {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 1rem 0;
+}
+
+.delete-card {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.recipe-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#recipe-owner-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.instructions-section {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.instructions-section h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.rating-input {
+    margin-bottom: 1rem;
+}
+
+.rating-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+#review-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-family: inherit;
+    margin-bottom: 1rem;
+}
+
+#review-form button {
+    width: 100%;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Demo Login Styles */
+.demo-login {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.demo-login h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.demo-login .form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.demo-login label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.demo-login input,
+.demo-login select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Miglioramenti dashboard */
+.dashboard-header {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-role-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-top: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem !important;
+    font-weight: bold;
+    color: #667eea;
+    margin: 1.5rem 0;
+}
+
+.dashboard-capabilities {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.dashboard-capabilities h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.capability-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.capability-item.disabled {
+    opacity: 0.5;
+    border-left-color: #ccc;
+}
+
+/* Login form semplificato */
+.simple-login {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.simple-login h3 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.simple-login .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.simple-login label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.simple-login input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.simple-login input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.credentials-help {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.credentials-help h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.credential-box {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    border-left: 4px solid #667eea;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.credential-box strong {
+    color: #667eea;
+}
+
+/* Stili per registrazione */
+.register-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #e53e3e;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+}
+
+.link-button:hover {
+    color: #c53030;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .multi-column-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .multi-column-masonry {
+        column-count: 2;
+    }
+    
+    .recipes-page {
+        grid-template-columns: 250px 1fr;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 2rem;
+    }
+    
+    .dashboard-sections {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .multi-column-2,
+    .multi-column-3,
+    .multi-column-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .recipes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .layout-with-sidebar,
+    .layout-with-sidebar-left {
+        grid-template-columns: 1fr;
+    }
+    
+    .capabilities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .multi-column,
+    .multi-column-2,
+    .multi-column-3,
+    .multi-column-4,
+    .multi-column-compact {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+    
+    .multi-column-masonry {
+        column-count: 1;
+    }
+    
+    .recipes-page {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .filters-sidebar {
+        position: relative;
+        top: auto;
+        margin-bottom: 1rem;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .recipes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .dashboard-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .ingredient-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .recipe-times {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    .hero-section h2 {
+        font-size: 2rem;
+    }
+    
+    .recipe-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .recipes-grid {
+        gap: 1rem;
+    }
+    
+    .dashboard-card {
+        padding: 1.5rem;
+    }
+    
+    .navbar {
+        padding: 0.75rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .filters-sidebar,
+    .recipe-actions,
+    footer,
+    button {
+        display: none !important;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr;
+    }
+    
+    body {
+        background: white;
+    }
+}
