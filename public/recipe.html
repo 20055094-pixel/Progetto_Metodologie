@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio ricetta - CookBook</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="recipe-detail">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1><a href="/" class="brand-link">🍳 CookBook</a></h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/recipes">Ricette</a>
+            <div id="auth-links">
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="recipe-detail">
+        <div class="recipe-header">
+            <h1 id="recipe-title"></h1>
+            <p id="recipe-description"></p>
+            <div class="recipe-meta">
+                <span id="recipe-chef"></span>
+                <span id="recipe-category"></span>
+                <span id="recipe-difficulty"></span>
+            </div>
+        </div>
+
+        <div class="recipe-content">
+            <div class="recipe-info">
+                <div class="recipe-image">
+                    <img id="recipe-image" alt="Ricetta">
+                </div>
+
+                <div class="recipe-times">
+                    <div class="time-info">
+                        <span class="label">Preparazione</span>
+                        <strong id="prep-time"></strong> min
+                    </div>
+                    <div class="time-info">
+                        <span class="label">Cottura</span>
+                        <strong id="cook-time"></strong> min
+                    </div>
+                    <div class="time-info">
+                        <span class="label">Porzioni</span>
+                        <strong id="servings"></strong>
+                    </div>
+                </div>
+
+                <div class="ingredients-section">
+                    <h3>📋 Ingredienti</h3>
+                    <div id="ingredients-list" class="ingredients-sortable"></div>
+                </div>
+
+                <div class="recipe-actions">
+                    <button id="favorite-btn" class="btn-primary" style="display: none;">❤️ Aggiungi ai Preferiti</button>
+                    <div id="recipe-owner-actions" style="display: none;">
+                        <a id="edit-recipe-btn" class="btn-warning" href="/recipe-form">✏️ Modifica</a>
+                        <button id="delete-recipe-btn" class="btn-danger">🗑️ Elimina</button>
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <div class="instructions-section">
+                    <h3>👨‍🍳 Istruzioni</h3>
+                    <div id="instructions"></div>
+                </div>
+
+                <div class="reviews-section">
+                    <h3>⭐ Recensioni</h3>
+                    <div id="add-review" style="display: none;">
+                        <form id="review-form">
+                            <div class="rating-input">
+                                <label>La tua valutazione</label>
+                                <div class="stars">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                            <textarea id="review-comment" placeholder="Scrivi un commento..."></textarea>
+                            <button type="submit" class="btn-primary">📝 Invia Recensione</button>
+                        </form>
+                    </div>
+                    <div id="reviews-list"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CookBook - Piattaforma Ricette Online</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+</body>
+</html>

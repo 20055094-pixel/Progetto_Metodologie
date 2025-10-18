@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accedi - CookBook</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="login">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1><a href="/" class="brand-link">🍳 CookBook</a></h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/recipes">Ricette</a>
+            <div id="auth-links">
+                <a href="/login" class="active">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-auth-tab="login">Login</button>
+                <button class="auth-tab" data-auth-tab="register">Registrati</button>
+            </div>
+
+            <form id="login-form" class="auth-form" data-auth-panel="login">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn-primary">🔓 Accedi</button>
+                <button type="button" id="google-login" class="btn-secondary">🔑 Login con Google</button>
+            </form>
+
+            <form id="register-form" class="auth-form hidden" data-auth-panel="register">
+                <div class="form-group">
+                    <label>Nome completo</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label>Ruolo</label>
+                    <select id="register-role" required>
+                        <option value="user">Cliente</option>
+                        <option value="chef">Chef</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">📝 Crea Account</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CookBook - Piattaforma Ricette Online</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+</body>
+</html>
