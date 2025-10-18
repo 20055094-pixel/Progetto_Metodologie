@@ -50,10 +50,17 @@ app.use(`/api/ingredients`, require(`./routes/ingredients`));
 app.use(`/api/users`, require(`./routes/users`));
 app.use(`/api/reviews`, require(`./routes/reviews`));
 
-// Serve index.html per tutte le altre route (SPA)
-app.get(`*`, (req, res) => {
-    res.sendFile(path.join(__dirname, `public`, `index.html`));
-});
+// Route pagine applicazione (MPA)
+const servePage = (page) => (req, res) => {
+    res.sendFile(path.join(__dirname, `public`, page));
+};
+
+app.get(`/`, servePage(`index.html`));
+app.get(`/recipes`, servePage(`recipes.html`));
+app.get(`/recipe`, servePage(`recipe.html`));
+app.get(`/recipe-form`, servePage(`recipe-form.html`));
+app.get(`/login`, servePage(`login.html`));
+app.get(`/dashboard`, servePage(`dashboard.html`));
 
 // Route di registrazione semplice
 app.post(`/auth/register`, async (req, res) => {
@@ -116,7 +123,7 @@ app.listen(PORT, () => {
     console.log(`   CookBook Server avviato sulla porta ${PORT}`);
     console.log(`========================================`);
     console.log(`URL: http://localhost:${PORT}`);
-    console.log(`Ambiente: ${process.env.NODE_ENV || development}`);
+    console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
     console.log(`Credenziali di test:`);
     console.log(`   Admin: admin@cookbook.com / admin123`);
     console.log(`   Chef: chef@cookbook.com / chef123`);

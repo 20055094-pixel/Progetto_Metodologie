@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 Tutte le ricette - CookBook</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="recipes">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1><a href="/" class="brand-link">🍳 CookBook</a></h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/recipes" class="active">Ricette</a>
+            <div id="auth-links">
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="recipes-page">
+        <aside class="filters-sidebar">
+            <h3>🔍 Filtri</h3>
+            <div class="filter-group">
+                <label>Ricerca</label>
+                <input type="text" id="search-filter" placeholder="Cerca ricetta...">
+            </div>
+            <div class="filter-group">
+                <label>Categoria</label>
+                <select id="category-filter">
+                    <option value="">Tutte</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Difficoltà</label>
+                <select id="difficulty-filter">
+                    <option value="">Tutte</option>
+                    <option value="facile">Facile</option>
+                    <option value="medio">Medio</option>
+                    <option value="difficile">Difficile</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Tempo max (min)</label>
+                <input type="number" id="prep-time-filter" placeholder="es. 30">
+            </div>
+            <div class="filter-actions">
+                <button id="apply-filters" class="btn-primary">Applica filtri</button>
+                <button id="clear-filters" class="btn-secondary">Cancella</button>
+            </div>
+        </aside>
+
+        <section class="recipes-content">
+            <div class="content-header">
+                <h2>📖 Tutte le Ricette</h2>
+                <div id="authenticated-actions" style="display: none;">
+                    <a id="add-recipe-btn" class="btn-primary" href="/recipe-form">➕ Nuova Ricetta</a>
+                </div>
+            </div>
+            <div id="recipes-grid" class="recipes-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CookBook - Piattaforma Ricette Online</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+</body>
+</html>

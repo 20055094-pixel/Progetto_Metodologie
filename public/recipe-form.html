@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione ricetta - CookBook</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="recipe-form">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1><a href="/" class="brand-link">🍳 CookBook</a></h1>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/recipes">Ricette</a>
+            <div id="auth-links">
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="recipe-form-container">
+        <h2 id="form-title">Nuova Ricetta</h2>
+        <form id="recipe-form" class="recipe-form">
+            <input type="hidden" id="recipe-id">
+            <div class="form-group">
+                <label>Titolo *</label>
+                <input type="text" name="title" id="title" required>
+            </div>
+
+            <div class="form-group">
+                <label>Descrizione</label>
+                <textarea name="description" id="description" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Categoria *</label>
+                    <select name="category" id="category" required>
+                        <option value="">Seleziona categoria</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Difficoltà</label>
+                    <select name="difficulty" id="difficulty">
+                        <option value="facile">Facile</option>
+                        <option value="medio">Medio</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tempo di preparazione (min)</label>
+                    <input type="number" name="prepTime" id="prepTime" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Tempo di cottura (min)</label>
+                    <input type="number" name="cookTime" id="cookTime" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Porzioni</label>
+                    <input type="number" name="servings" id="servings" min="1">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Immagine (URL o Base64)</label>
+                <input type="text" name="image" id="image">
+            </div>
+
+            <div class="form-group">
+                <label>Istruzioni *</label>
+                <textarea name="instructions" id="instructions-input" rows="6" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Ingredienti *</label>
+                <div id="ingredients-container" class="ingredients-editor"></div>
+                <button type="button" id="add-ingredient-btn" class="btn-secondary">➕ Aggiungi ingrediente</button>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">💾 Salva</button>
+                <a href="/recipes" class="btn-secondary">Annulla</a>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CookBook - Piattaforma Ricette Online</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+</body>
+</html>

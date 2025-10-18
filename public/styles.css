@@ -29,6 +29,10 @@ body {
     background-color: var(--bg-color);
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* ========================================
    SISTEMA MULTI-COLUMN LAYOUT AVANZATO
    ======================================== */
@@ -122,6 +126,11 @@ body {
     font-weight: 700;
 }
 
+.brand-link {
+    color: inherit;
+    text-decoration: none;
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -167,6 +176,14 @@ main {
 .hero-section p {
     font-size: 1.2rem;
     opacity: 0.9;
+}
+
+.empty-state {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
 }
 
 /* ========================================
@@ -224,6 +241,11 @@ main {
     flex-direction: column;
 }
 
+.remove-card-btn {
+    align-self: flex-start;
+    margin-top: 0.75rem;
+}
+
 .recipe-card h3 {
     color: #333;
     margin-bottom: 0.8rem;
@@ -279,6 +301,12 @@ main {
     max-width: 1600px;
     margin: 0 auto;
     padding: 1rem;
+}
+
+.recipes-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .filters-sidebar {

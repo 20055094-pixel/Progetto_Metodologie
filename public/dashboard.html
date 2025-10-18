@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍳 CookBook - Ricette in evidenza</title>
+    <title>Dashboard - CookBook</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
-<body data-page="home">
+<body data-page="dashboard">
     <nav class="navbar">
         <div class="nav-brand">
             <h1><a href="/" class="brand-link">🍳 CookBook</a></h1>
@@ -20,16 +20,13 @@
         </div>
     </nav>
 
-    <main id="app">
-        <div class="hero-section">
-            <h2>🍳 Benvenuto su CookBook</h2>
-            <p>Scopri e condividi le migliori ricette</p>
-        </div>
+    <main class="dashboard-page">
+        <header class="dashboard-header">
+            <h2>📊 La tua area personale</h2>
+            <p id="dashboard-welcome"></p>
+        </header>
 
-        <div class="featured-recipes">
-            <h3>Ricette in Evidenza</h3>
-            <div id="featured-recipes-grid" class="recipes-grid"></div>
-        </div>
+        <section id="dashboard-sections" class="dashboard-sections"></section>
     </main>
 
     <footer>
